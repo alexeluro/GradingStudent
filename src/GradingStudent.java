@@ -52,17 +52,43 @@ public class GradingStudent {
 
 
     public static void main(String[] args) {
-
+        List<Integer> grades = new ArrayList<>();
+        grades.add(73);
+        grades.add(67);
+        grades.add(38);
+        grades.add(33);
+        System.out.println(gradingStudents(grades));
     }
 
 
 
     public static List<Integer> gradingStudents(List<Integer> grades) {
         // Write your code here
-        return new ArrayList<>();
+        List<Integer> transformedGrades = new ArrayList<>();
+        for (Integer grade : grades) {
+            transformedGrades.add(checkForCondition(grade));
+        }
+        return transformedGrades;
     }
 
+    private static int checkForCondition(int grade) {
+        List<Integer> multiples = generateMultiplesOfFive();
 
+        for (Integer multiple : multiples) {
+            if (multiple - grade < 3 && multiple - grade > 0 && grade >= 38){
+                return multiple;
+            }
+        }
+        return grade;
+    }
+
+    private static List<Integer> generateMultiplesOfFive(){
+        List<Integer> multiplesOfFive = new ArrayList<>();
+        for (int i = 1; i <= 20; i++) {
+            multiplesOfFive.add(5*i);
+        }
+        return multiplesOfFive;
+    }
 
 
 
